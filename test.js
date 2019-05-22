@@ -81,12 +81,34 @@ function registration() {
     }
 }
 
+var login_form = document.getElementById('login_form');
+var login = document.getElementById('login');
+login.addEventListener('click', logining);
+//var checkEmail = document.getElementById('checkEmail');
+
+function logining() {
+    if (formHide) {
+        login_form.style.display = 'block';
+        formHide = false;
+    }
+}
+
 var close = document.getElementById('close');
 close.addEventListener('click', closing);
 
 function closing() {
     if (formHide == false) {
         reg_form.style.display = 'none';
+        formHide = true;
+    }
+}
+
+var closeLogin = document.getElementById('closeLogin');
+closeLogin.addEventListener('click', closingLogin);
+
+function closingLogin() {
+    if (formHide == false) {
+        login_form.style.display = 'none';
         formHide = true;
     }
 }
@@ -111,7 +133,7 @@ function validate(e) {
     /*var LetterUppercase = /^[A-Z]/.test(password);*/
     //var testEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     var testEmail = email.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-    var passUppercase = password.value.match(/^[A-Z]/);
+    var passUppercase = password.value.match(/[A-Z]/);
 
     if(!userName.value){
         userName.style.borderBottomColor = 'red';
@@ -170,7 +192,11 @@ function validate(e) {
     checkEmail.style.display = 'block';
     setTimeout(function(){
         document.getElementById('checkEmail').style.display = 'none';
-    },4000);
+    },3000);
+
+    setTimeout(function () {
+        window.location.reload();
+    }, 3500)
 }
 
 userName.addEventListener('focus', focus);
@@ -247,20 +273,173 @@ function blur_for_passwordConfirm() {
     }
 }
 
-function loadInfo() {
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("GET", "https://reqres.in/api/users", true);
-    // xhr.onload = function(){
-    //     console.log(xhr.responseText);
-    // };
-    // xhr.send();
+function loginValid(e) {
+    e.preventDefault();
+    var loginEmail = document.getElementById('loginEmail');
+    var errorLoginEmail = document.getElementById('errorLoginEmail');
+    var errorInputsLoginEmail = document.getElementById('errorInputsLoginEmail');
+    var testEmail = loginEmail.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 
+    var loginPassword = document.getElementById('loginPassword');
+    var errorLoginPassword = document.getElementById('errorLoginPassword');
+    var errorLengthLoginPassword = document.getElementById('errorLengthLoginPassword');
+    var errorSymbLogin = document.getElementById('errorSymbLogin');
+    var passUppercase = loginPassword.value.match(/^[A-Z]/);
+
+    var passwordLoginConfirm = document.getElementById('passwordLoginConfirm');
+    var errorLoginConfirm = document.getElementById('errorLoginConfirm');
+
+    if(!loginEmail.value){
+        loginEmail.style.borderBottomColor = 'red';
+        errorLoginEmail.style.display = 'block';
+        return false;
+    }
+
+    if(!testEmail){
+        loginEmail.style.borderBottomColor = 'red';
+        errorInputsLoginEmail.style.display = 'block';
+        return false;
+    } else {
+        loginEmail.style.borderBottomColor = 'green';
+        errorInputsLoginEmail.style.display = 'none';
+    }
+
+    if(!loginPassword.value){
+        loginPassword.style.borderBottomColor = 'red';
+        errorLoginPassword.style.display = 'block';
+        return false;
+    }
+
+    else if(loginPassword.value.length < 6){
+        loginPassword.style.borderBottomColor = 'red';
+        errorLengthLoginPassword.style.display = 'block';
+        return false;
+    }
+
+    else if(!passUppercase){
+        loginPassword.style.borderBottomColor = 'red';
+        errorSymbLogin.style.display = 'block';
+        return false;
+    }
+
+    if (loginPassword.value !== passwordLoginConfirm.value){
+        loginPassword.style.borderBottomColor = 'red';
+        passwordLoginConfirm.style.borderBottomColor = 'red';
+        errorLoginConfirm.style.display = 'block';
+        return false;
+    }
+    return true;
+}
+
+loginEmail.addEventListener('focus', focus_for_loginEmail);
+
+function focus_for_loginEmail() {
+    if (loginEmail) {
+        loginEmail.style.borderBottomColor = 'green';
+        errorLoginEmail.style.display = 'none';
+        errorInputsLoginEmail.style.display = 'none';
+    }
+}
+
+loginEmail.addEventListener('blur', blur_for_loginEmail);
+
+function blur_for_loginEmail() {
+    if (!loginEmail.value) {
+        loginEmail.style.borderBottomColor = 'gray';
+    }
+}
+
+loginPassword.addEventListener('focus', focus_for_loginPassword);
+
+function focus_for_loginPassword() {
+    if (loginPassword) {
+        loginPassword.style.borderBottomColor = 'green';
+        errorLoginPassword.style.display = 'none';
+        errorLengthLoginPassword.style.display = 'none';
+        errorSymbLogin.style.display = 'none';
+    }
+}
+
+loginPassword.addEventListener('blur', blur_for_loginPassword);
+
+function blur_for_loginPassword() {
+    if (!loginPassword.value) {
+        loginPassword.style.borderBottomColor = 'gray';
+    }
+}
+
+passwordLoginConfirm.addEventListener('focus', focus_for_passwordLoginConfirm);
+
+function focus_for_passwordLoginConfirm() {
+    if (passwordLoginConfirm) {
+        passwordLoginConfirm.style.borderBottomColor = 'green';
+        loginPassword.style.borderBottomColor = 'green';
+        errorLoginConfirm.style.display = 'none';
+    }
+}
+
+passwordLoginConfirm.addEventListener('blur', blur_for_passwordLoginConfirm);
+
+function blur_for_passwordLoginConfirm() {
+    if (!passwordLoginConfirm.value) {
+        passwordLoginConfirm.style.borderBottomColor = 'gray';
+    }
+}
+
+function loadInfo() {
     var data = {
         "name": userName.value,
         "email": email.value
     };
 
-    axios.post("https://reqres.in/api/users", {data})
+    axios.post("https://reqres.in/api/users", {data: data})
         .then(response => console.log(response))
         .catch(error => console.log(error))
 }
+
+function signUp() {
+    var loginEmail = document.getElementById('loginEmail').value;
+    var data = {
+        "email": loginEmail
+    };
+
+    axios.post("https://reqres.in/api/users", {data: data})
+        .then(response => {
+            console.log(response);
+            $(document).ready(function () {
+                $.getJSON("http://jsonip.com/?callback=?", function (data) {
+                    console.log(data);
+                    let get_ip = data.ip;
+                });
+            });
+
+            //let ip = response.connection.remoteAddress;
+            // console.log(ip);
+
+            window.location.replace("relocation_to_map.html");
+
+            // var isLogin = false;
+            // for(var i = 0; i < response['data'].length; i++) {
+            //     var respEmail = response['data'][i]['data']['email'];
+            //     // var storage = response.localStorage.setItem('loginEmail', 'email');
+            //     // Array.from('storage');
+            //     if (loginEmail == respEmail){
+            //         isLogin = true;
+            //         localStorage.setItem('user_data', response['data'][i]);
+            //     }
+            // }
+            // if(isLogin) {
+            //     login_form.style.display = 'none';
+            //     alert('You are log in');
+            // }
+        })
+        .catch(error => console.log(error))
+}
+
+
+
+
+
+
+
+
