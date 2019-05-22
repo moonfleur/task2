@@ -418,6 +418,7 @@ function signUp() {
 
             window.location.replace("relocation_to_map.html");
 
+            
             // var isLogin = false;
             // for(var i = 0; i < response['data'].length; i++) {
             //     var respEmail = response['data'][i]['data']['email'];
