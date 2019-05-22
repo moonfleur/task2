@@ -411,8 +411,7 @@ nav {
 .errorInputsLoginEmail,
 .errorLoginPassword,
 .errorLengthLoginPassword,
-.errorSymbLogin,
-.errorLoginConfirm {
+.errorSymbLogin{
     display: none;
     color: red;
     position: absolute;

@@ -321,13 +321,6 @@ function loginValid(e) {
         errorSymbLogin.style.display = 'block';
         return false;
     }
-
-    if (loginPassword.value !== passwordLoginConfirm.value){
-        loginPassword.style.borderBottomColor = 'red';
-        passwordLoginConfirm.style.borderBottomColor = 'red';
-        errorLoginConfirm.style.display = 'block';
-        return false;
-    }
     return true;
 }
 
@@ -368,24 +361,6 @@ function blur_for_loginPassword() {
     }
 }
 
-passwordLoginConfirm.addEventListener('focus', focus_for_passwordLoginConfirm);
-
-function focus_for_passwordLoginConfirm() {
-    if (passwordLoginConfirm) {
-        passwordLoginConfirm.style.borderBottomColor = 'green';
-        loginPassword.style.borderBottomColor = 'green';
-        errorLoginConfirm.style.display = 'none';
-    }
-}
-
-passwordLoginConfirm.addEventListener('blur', blur_for_passwordLoginConfirm);
-
-function blur_for_passwordLoginConfirm() {
-    if (!passwordLoginConfirm.value) {
-        passwordLoginConfirm.style.borderBottomColor = 'gray';
-    }
-}
-
 function loadInfo() {
     var data = {
         "name": userName.value,
@@ -403,36 +378,39 @@ function signUp() {
         "email": loginEmail
     };
 
-    axios.post("https://reqres.in/api/users", {data: data})
+    axios.get("https://reqres.in/api/users", {data: data})
         .then(response => {
             console.log(response);
-            $(document).ready(function () {
-                $.getJSON("http://jsonip.com/?callback=?", function (data) {
-                    console.log(data);
-                    let get_ip = data.ip;
-                });
-            });
 
             //let ip = response.connection.remoteAddress;
             // console.log(ip);
 
-            window.location.replace("relocation_to_map.html");
-
-            
-            // var isLogin = false;
-            // for(var i = 0; i < response['data'].length; i++) {
-            //     var respEmail = response['data'][i]['data']['email'];
-            //     // var storage = response.localStorage.setItem('loginEmail', 'email');
-            //     // Array.from('storage');
-            //     if (loginEmail == respEmail){
-            //         isLogin = true;
-            //         localStorage.setItem('user_data', response['data'][i]);
-            //     }
-            // }
-            // if(isLogin) {
-            //     login_form.style.display = 'none';
-            //     alert('You are log in');
-            // }
+            var isLogin = false;
+            for(var i = 0; i < response['data']['data'].length; i++) {
+                var respEmail = response['data']['data'][i]['email'];
+                if (loginEmail === respEmail){
+                    isLogin = true;
+                    localStorage.setItem('user_data', response['data'][i]);
+                }
+            }
+            if(isLogin) {
+                login_form.style.display = 'none';
+                alert('Thank you, you are logged in. Now you will redirect to the map...');
+                axios
+                    .get('http://ip-api.com/json/24.48.0.1')
+                    .then(response => (this.info = response.data.bpi));
+                //https://geoip-db.com/json/geoip.php?jsonp=callback
+                $(document).ready(function () {
+                    $.getJSON("http://jsonip.com/?callback=?", function (data) {
+                        let get_ip = data.ip;
+                        localStorage.setItem('user_ip', get_ip);
+                        //alert(get_ip);
+                        window.location.replace("relocation_to_map.html");
+                    });
+                });
+            } else {
+                alert('Check your email, system has not email like this');
+            }
         })
         .catch(error => console.log(error))
 }
