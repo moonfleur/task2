@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6393fd1f-389b-429e-917e-e893f0bb1693" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/relocation_to_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/relocation_to_map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,7 +42,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="235">
+                <state relative-caret-position="415">
                   <caret line="420" column="12" selection-start-line="420" selection-start-column="12" selection-end-line="420" selection-end-column="12" />
                 </state>
               </provider>
@@ -53,8 +51,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/relocation_to_map.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="200">
-                  <caret line="10" column="92" selection-start-line="10" selection-start-column="92" selection-end-line="10" selection-end-column="92" />
+                <state relative-caret-position="620">
+                  <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -101,9 +99,10 @@
         <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/../new/gulp-scss-starter/src/styles/general/main.sass" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/relocation_to_map.html" />
         <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/../package-lock.json" />
         <option value="$PROJECT_DIR$/package-lock.json" />
+        <option value="$PROJECT_DIR$/relocation_to_map.html" />
       </list>
     </option>
   </component>
@@ -193,12 +192,12 @@
       <workItem from="1558366933377" duration="781000" />
       <workItem from="1558367788688" duration="832000" />
       <workItem from="1558424990466" duration="20615000" />
-      <workItem from="1558513562084" duration="23593000" />
+      <workItem from="1558513562084" duration="24481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120373000" />
+    <option name="totallyTimeSpent" value="121261000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -337,24 +336,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="835">
+          <caret line="6194" selection-start-line="6194" selection-end-line="6194" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="5535" column="23" lean-forward="true" selection-start-line="5535" selection-start-column="23" selection-end-line="5535" selection-end-column="23" />
+        <state relative-caret-position="272">
+          <caret line="4961" column="33" selection-start-line="4961" selection-start-column="30" selection-end-line="4961" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="415">
           <caret line="420" column="12" selection-start-line="420" selection-start-column="12" selection-end-line="420" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/relocation_to_map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="92" selection-start-line="10" selection-start-column="92" selection-end-line="10" selection-end-column="92" />
+        <state relative-caret-position="620">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
         </state>
       </provider>
     </entry>
